@@ -12,7 +12,7 @@ let Bank = (function () {
         Balance = val;
 
     }
-
+ 
     function withdraw(val) {
         if (val <= Balance) {
             Balance -= val;
@@ -21,13 +21,25 @@ let Bank = (function () {
         }
     }
 
+// Module Patterns
+    // return {
+    //     checkBalance,
+    //     setBalance,
+    //     withdraw,
+    // };
+
+    // ------- Revealing Module Pattern ------
     return {
-        checkBalance,
-        setBalance,
-        withdraw,
-    };
+        check:checkBalance,
+        set:setBalance,
+        wid:withdraw,
+    }
 })();
 
-Bank.checkBalance();
-Bank.withdraw(50000);
-Bank.checkBalance();
+// Bank.checkBalance();
+// Bank.withdraw(50000);
+// Bank.checkBalance();
+
+Bank.check()
+Bank.set(100000)
+Bank.check()
