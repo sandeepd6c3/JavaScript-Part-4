@@ -1,5 +1,7 @@
 //  -------- Module Patterns ---------
 
+ 
+
 // let Bank = (function () {
 
 //     let Balance = 100000;
@@ -48,37 +50,86 @@
 
 //    --------=> Factory Function Pattern <=--------
 
-function Factory(name, price) {
+// function Factory(name, price) {
 
-    let stock = 20;
-    return {
-        name,
-        price,
-        checkStock(){
-            console.log(stock);
+//     let stock = 20;
+//     return {
+//         name,
+//         price,
+//         checkStock(){
+//             console.log(stock);
             
-        },
-        buy(qty) {
-            if (qty < stock) {
-                stock -= qty;
-                console.log(`${qty} Booked , ${stock} Pices left `);
+//         },
+//         buy(qty) {
+//             if (qty < stock) {
+//                 stock -= qty;
+//                 console.log(`${qty} Booked , ${stock} Pices left `);
 
-            }
-            else {
-                console.log(`only ${stock} Pices in stock`);
+//             }
+//             else {
+//                 console.log(`only ${stock} Pices in stock`);
 
-            }
-        },
-        refil(qty) {
-            stock += qty;
-            console.log(`${stock} pices in stock`);
+//             }
+//         },
+//         refil(qty) {
+//             stock += qty;
+//             console.log(`${stock} pices in stock`);
 
-        }
-    }
+//         }
+//     }
 
+// }
+
+// let mobile = Factory("iphone", 80000);
+// let Headphones=Factory("HeadPhone",5000);
+
+//  ------=> Observer Pattern <=------
+
+class YoutubeChannel {
+  constructor() {
+    this.subscribers = [];
+  }
+
+  subscribe(user) {
+    this.subscribers.push(user);
+    user.update(`${user.name}, You have subscribed the channel.`);
+  }
+
+  unsubscribe(user) {
+    this.subscribers = this.subscribers.filter((sub) => sub !== user);
+    user.update(`You have un-subscribed the channel.`);
+  }
+
+  notify(message) {
+    this.subscribers.forEach((sub) => sub.update(message));
+  }
 }
 
-let mobile = Factory("iphone", 80000);
-let Headphones=Factory("HeadPhone",5000);
+class User {
+  constructor(name) {
+    this.name = name;
+  }
 
- 
+  update(data) {
+    console.log(`${this.name}, ${data}`);
+  }
+}
+
+let sheryians = new YoutubeChannel();
+let user1 = new User("Harsh");
+let user2 = new User("Amit");
+
+sheryians.subscribe(user1);
+sheryians.subscribe(user2);
+
+sheryians.notify("new video is live on the channel..");
+```
+
+// ---
+
+// ## Output kya aayega?
+// ```
+// Harsh, Harsh You have subscribed the channel.
+// Amit, Amit You have subscribed the channel.
+// Harsh, new video is live on the channel..
+// Amit, new video is live on the channel..
