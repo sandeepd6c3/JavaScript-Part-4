@@ -54,6 +54,10 @@ function Factory(name, price) {
     return {
         name,
         price,
+        checkStock(){
+            console.log(stock);
+            
+        },
         buy(qty) {
             if (qty < stock) {
                 stock -= qty;
@@ -75,5 +79,6 @@ function Factory(name, price) {
 }
 
 let mobile = Factory("iphone", 80000);
+let Headphones=Factory("HeadPhone",5000);
 
-mobile.refil(80);
+ 
