@@ -97,7 +97,7 @@ class YoutubeChannel {
 
   unsubscribe(user) {
     this.subscribers = this.subscribers.filter((sub) => sub !== user);
-    user.update(`You have un-subscribed the channel.`);
+    user.update(`${user}, You have un-subscribed the channel.`);
   }
 
   notify(message) {
@@ -119,7 +119,7 @@ let sheryians = new YoutubeChannel();
 let user1 = new User("Harsh");
 let user2 = new User("Amit");
 
-sheryians.subscribe(user1);
+sheryians.unsubscribe(user1);
 sheryians.subscribe(user2);
 
 sheryians.notify("new video is live on the channel..");
